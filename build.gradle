@@ -1,0 +1,101 @@
+/*
+ * Copyright 2012-2017 Tobi29
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+buildscript {
+    def kotlinVersion = "1.1.1"
+    def dokkaVersion = "0.9.13"
+    def androidBuildVersion = "2.3.0"
+    def shadowVersion = "1.2.4"
+
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:$dokkaVersion"
+        classpath "com.android.tools.build:gradle:$androidBuildVersion"
+        classpath "com.github.jengelman.gradle.plugins:shadow:$shadowVersion"
+    }
+}
+
+allprojects {
+    def env = System.getenv()
+    if (env.containsKey("VERSION")) {
+        version = env["VERSION"]
+    } else {
+        version = findProperty("build.version")
+    }
+    group = "com.github.Tobi29.VanillaBasicsAndroid"
+
+    repositories {
+        jcenter()
+        maven {
+            url "https://dl.bintray.com/kotlin/kotlin-eap-1.1"
+        }
+        maven {
+            url "https://jitpack.io"
+        }
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = "3.4.1"
+    distributionUrl =
+            "https://services.gradle.org/distributions/gradle-${gradleVersion}-all.zip"
+}
+
+ext {
+    kotlinVersion = "1.1.1"
+    kotlinLoggingVersion = "1.4.3"
+    slf4jVersion = "1.7.24"
+    scapesVersion = "91292fdcc8"
+    scapesEngineVersion = "eff420d268"
+    scapesEngineAndroidVersion = "88a8500385"
+
+    kotlinLogging = "io.github.microutils:kotlin-logging:$kotlinLoggingVersion"
+    slf4jAndroid = "org.slf4j:slf4j-android:$slf4jVersion"
+    kotlinSTD = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+    scapesCore =
+            "com.github.Tobi29.Scapes:ScapesCore:$scapesVersion"
+    scapesVanillaBasics =
+            "com.github.Tobi29.Scapes:VanillaBasics:$scapesVersion"
+
+    scapesEngineEngine =
+            "com.github.Tobi29.ScapesEngine:Engine:$scapesEngineVersion"
+    scapesEngineUtils =
+            "com.github.Tobi29.ScapesEngine:Utils:$scapesEngineVersion"
+    scapesEngineCodecOGG =
+            "com.github.Tobi29.ScapesEngine:CodecOGG:$scapesEngineVersion"
+    scapesEngineCodecMP3 =
+            "com.github.Tobi29.ScapesEngine:CodecMP3:$scapesEngineVersion"
+    scapesEngineCodecWAV =
+            "com.github.Tobi29.ScapesEngine:CodecWAV:$scapesEngineVersion"
+    scapesEngineFileSystems =
+            "com.github.Tobi29.ScapesEngine:FileSystems:$scapesEngineVersion"
+
+    scapesEngineAndroidBackend =
+            "com.github.Tobi29.ScapesEngineAndroid:AndroidBackend:$scapesEngineAndroidVersion"
+    scapesEngineAndroidFileSystem =
+            "com.github.Tobi29.ScapesEngineAndroid:AndroidFileSystem:$scapesEngineAndroidVersion"
+    scapesEngineAndroidSQLite =
+            "com.github.Tobi29.ScapesEngineAndroid:AndroidSQLite:$scapesEngineAndroidVersion"
+    scapesEngineAndroidSSLProvider =
+            "com.github.Tobi29.ScapesEngineAndroid:AndroidSSLProvider:$scapesEngineAndroidVersion"
+    scapesEngineAndroidSysTrace =
+            "com.github.Tobi29.ScapesEngineAndroid:AndroidSysTrace:$scapesEngineAndroidVersion"
+}
