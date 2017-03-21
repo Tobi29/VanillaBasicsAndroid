@@ -66,14 +66,25 @@ dependencies {
     compile rootProject.ext.scapesEngineCodecOGG
     compile rootProject.ext.scapesEngineCodecMP3
     compile rootProject.ext.scapesEngineCodecWAV
-    compile rootProject.ext.scapesEngineAndroidBackend
-    compile rootProject.ext.scapesEngineAndroidFileSystem
-    compile rootProject.ext.scapesEngineAndroidSQLite
-    compile rootProject.ext.scapesEngineAndroidSSLProvider
-    compile rootProject.ext.scapesEngineAndroidSysTrace
     compile rootProject.ext.kotlinLogging
     compile rootProject.ext.slf4jAndroid
     compile rootProject.ext.kotlinSTD
+
+    if (findProperty("build.local.engineandroid") == null) {
+        compile rootProject.ext.scapesEngineAndroidBackend
+        compile rootProject.ext.scapesEngineAndroidFileSystem
+        compile rootProject.ext.scapesEngineAndroidSQLite
+        compile rootProject.ext.scapesEngineAndroidSSLProvider
+        compile rootProject.ext.scapesEngineAndroidSysTrace
+    } else {
+        compile(name: "AndroidBackend-release", ext: "aar")
+        compile(name: "AndroidFileSystem-release", ext: "aar")
+        compile(name: "AndroidSQLite-release", ext: "aar")
+        compile(name: "AndroidSSLProvider-release", ext: "aar")
+        compile(name: "AndroidSysTrace-release", ext: "aar")
+        compile(name: "OpenAL-release", ext: "aar")
+        compile rootProject.ext.scapesEngineOpenALSounds
+    }
 }
 
 configurations.all {

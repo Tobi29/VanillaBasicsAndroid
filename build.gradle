@@ -49,6 +49,27 @@ allprojects {
         maven {
             url "https://jitpack.io"
         }
+        def localEngineAndroid = findProperty("build.local.engineandroid")
+        if (localEngineAndroid != null) {
+            flatDir {
+                dirs "${rootProject.rootDir}/$localEngineAndroid/AndroidBackend/build/outputs/aar"
+            }
+            flatDir {
+                dirs "${rootProject.rootDir}/$localEngineAndroid/AndroidFileSystem/build/outputs/aar"
+            }
+            flatDir {
+                dirs "${rootProject.rootDir}/$localEngineAndroid/AndroidSQLite/build/outputs/aar"
+            }
+            flatDir {
+                dirs "${rootProject.rootDir}/$localEngineAndroid/AndroidSSLProvider/build/outputs/aar"
+            }
+            flatDir {
+                dirs "${rootProject.rootDir}/$localEngineAndroid/AndroidSysTrace/build/outputs/aar"
+            }
+            flatDir {
+                dirs "${rootProject.rootDir}/$localEngineAndroid/OpenAL/build/outputs/aar"
+            }
+        }
     }
 }
 
@@ -70,8 +91,7 @@ ext {
     slf4jAndroid = "org.slf4j:slf4j-android:$slf4jVersion"
     kotlinSTD = "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
-    scapesCore =
-            "com.github.Tobi29.Scapes:ScapesCore:$scapesVersion"
+    scapesCore = "com.github.Tobi29.Scapes:ScapesCore:$scapesVersion"
     scapesVanillaBasics =
             "com.github.Tobi29.Scapes:VanillaBasics:$scapesVersion"
 
@@ -87,6 +107,8 @@ ext {
             "com.github.Tobi29.ScapesEngine:CodecWAV:$scapesEngineVersion"
     scapesEngineFileSystems =
             "com.github.Tobi29.ScapesEngine:FileSystems:$scapesEngineVersion"
+    scapesEngineOpenALSounds =
+            "com.github.Tobi29.ScapesEngine:OpenALSounds:$scapesEngineVersion"
 
     scapesEngineAndroidBackend =
             "com.github.Tobi29.ScapesEngineAndroid:AndroidBackend:$scapesEngineAndroidVersion"
