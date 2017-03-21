@@ -83,9 +83,9 @@ ext {
     kotlinVersion = "1.1.1"
     kotlinLoggingVersion = "1.4.3"
     slf4jVersion = "1.7.24"
-    scapesVersion = "91292fdcc8"
-    scapesEngineVersion = "eff420d268"
-    scapesEngineAndroidVersion = "88a8500385"
+    scapesVersion = "9f4f92c372"
+    scapesEngineVersion = "a0af17dd99"
+    scapesEngineAndroidVersion = "450450c190"
 
     kotlinLogging = "io.github.microutils:kotlin-logging:$kotlinLoggingVersion"
     slf4jAndroid = "org.slf4j:slf4j-android:$slf4jVersion"
